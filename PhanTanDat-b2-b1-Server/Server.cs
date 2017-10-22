@@ -32,7 +32,14 @@ namespace PhanTanDat_b2_b1_Server
             S.Listen(10);
 
             C = S.Accept();
+
+            S.BeginAccept(new AsyncCallback(AcceptCallback),S);
         }
+		
+		private void AcceptCallback(IAsyncResult iar)
+		{
+            C = S.EndAccept(iar);
+		}
 
         private void btn_snd_Click(object sender, EventArgs e)
         {
